@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity(),SensorEventListener {
             lienzo.posY=+event.values[1]*20
         }
         if(event.sensor.type==Sensor.TYPE_PROXIMITY){
-            lienzo.dia=(event.values[0]!=0f)
+            lienzo.dia=(event.values[0]>=3f)
         }
         lienzo.invalidate()
     }
