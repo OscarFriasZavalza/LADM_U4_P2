@@ -15,10 +15,12 @@ class Lienzo (p:MainActivity): View(p) {
     //img dia
     var nube:Bitmap=BitmapFactory.decodeResource(resources,R.drawable.nube)
     var sol:Bitmap=BitmapFactory.decodeResource(resources,R.drawable.sol)
+    var fondo_dia:Bitmap=BitmapFactory.decodeResource(resources,R.drawable.fondodedia)
     //img noche
     var estrellas:Bitmap=BitmapFactory.decodeResource(resources,R.drawable.estrellas)
     var luna : Bitmap=BitmapFactory.decodeResource(resources,R.drawable.luna)
     var nube2:Bitmap=BitmapFactory.decodeResource(resources,R.drawable.nube2)
+    var fondo_noche:Bitmap=BitmapFactory.decodeResource(resources,R.drawable.fondonoche)
 
 
 
@@ -27,16 +29,17 @@ class Lienzo (p:MainActivity): View(p) {
         val p=Paint()
 
         if (dia==true){
+            canvas.drawBitmap(fondo_dia,posX-300,posY-300,p)
             canvas.drawBitmap(sol,posX,posY,p)
             canvas.drawBitmap(nube,posX,posY+300,p)
             canvas.drawBitmap(nube,posX+500,posY+300,p)
             canvas.drawBitmap(bruja,200f,600f,p)
         }else{
+             canvas.drawBitmap(fondo_noche,posX-300,posY-300,p)
              canvas.drawBitmap(estrellas,posX,posY+300f,p)
              canvas.drawBitmap(luna,posX,posY,p)
-
              canvas.drawBitmap(nube2,posX+500f,posY+300f,p)
-            canvas.drawBitmap(bruja,200f,600f,p)
+             canvas.drawBitmap(bruja,200f,600f,p)
         }
     }
 
