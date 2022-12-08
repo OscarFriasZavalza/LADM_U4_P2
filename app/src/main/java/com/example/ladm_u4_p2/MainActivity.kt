@@ -10,7 +10,8 @@ import android.os.Bundle
 
 class MainActivity : AppCompatActivity(),SensorEventListener {
     lateinit var sensorManager:SensorManager
-    var lienzo= Lienzo(this)
+    lateinit var lienzo:Lienzo
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity(),SensorEventListener {
         sensorManager.registerListener(this,sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY),SensorManager.SENSOR_DELAY_NORMAL)
         sensorManager.registerListener(this,sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),SensorManager.SENSOR_DELAY_NORMAL)
 
-       // lienzo=Lienzo(this)
+        lienzo=Lienzo(this)
         setContentView(lienzo)
 
     }
@@ -30,16 +31,16 @@ class MainActivity : AppCompatActivity(),SensorEventListener {
 
 
         if(event.sensor.type==Sensor.TYPE_ACCELEROMETER){
-            lienzo.posX=event.values[0]
-            lienzo.posY=event.values[1]
+            lienzo.posX=+event.values[0]*20
+            lienzo.posY=+event.values[1]*20
         }
         if(event.sensor.type==Sensor.TYPE_PROXIMITY){
-            lienzo.dia=(event.values[0]>=1f)
+            lienzo.dia=(event.values[0]!=0f)
         }
         lienzo.invalidate()
     }
 
     override fun onAccuracyChanged(p0: Sensor?, p1: Int) {
-        TODO("Not yet implemented")
+
     }
 }
